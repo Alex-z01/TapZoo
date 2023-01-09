@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb7f4c52607f374782989daaa345357, type: 3}
+  m_Name: Duck
+  m_EditorClassIdentifier: 
+  container: {fileID: 8035027193054965413, guid: 6b938a5c65d072a439d94f01bc8225cf, type: 3}
+  id: 4
+  width: 2
+  height: 2
+  entry: {fileID: 11400000, guid: fa94eced2e9177d47a256015a1bbe5fb, type: 2}
