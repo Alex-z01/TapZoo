@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 public class ActiveStructureEventArgs : EventArgs
@@ -16,58 +17,121 @@ public class ActiveStructureEventArgs : EventArgs
 public class Shop : MonoBehaviour
 {
     private Player _player;
+    private ArrayGrid _grid;
     private UIControls _uiControls;
-    private StructureData _structureData;
+    private ShopData _shopData;
 
     public event EventHandler<ActiveStructureEventArgs> ActiveStructure;
 
-    public GameObject animalContainer;
+    public GameObject animalContainer, structContainer, miscContainer;
     public GameObject entryPrefab;
 
     private void Start()
     {
         InitializeReferences();
-
-        _structureData.allStructures = _structureData.allStructures.OrderBy(pair => pair.Value.entry.cost).ToDictionary(pair => pair.Key, pair => pair.Value);
-
-        // Instantiate all the shop entries
-        foreach (KeyValuePair<int, Structure> pair in _structureData.allStructures)
-        {
-            GameObject entry = Instantiate(entryPrefab, animalContainer.transform);
-            entry.GetComponent<ShopEntry>().entryData = pair.Value.entry;
-        }
     }
 
     private void InitializeReferences()
     {
         _player = Manager.Instance.player;
-        _structureData = Manager.Instance.GetComponent<StructureData>();
+        _grid = Manager.Instance.grid;
+        _shopData = Manager.Instance.GetComponent<ShopData>();
         _uiControls = Manager.Instance.uiControls;
     }
 
-    public void Purchase(string structureName)
+    public void AnimalsTab()
     {
-        Structure structure = _structureData.allStructures.Values.Where(value => value.entry.entryName == structureName).First();
+        _uiControls.ShowLayout("Shop", "Shop-Animals");
 
-        if (_player.zooCoins < structure.entry.cost)
+        _shopData.AnimalShopEntries = _shopData.AnimalShopEntries.OrderBy(pair => pair.Value.cost).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        if(animalContainer.transform.childCount == 0)
+        {
+            // Instantiate all the shop entries
+            foreach (KeyValuePair<int, StructureShopEntrySObj> pair in _shopData.AnimalShopEntries)
+            {
+                GameObject entry = Instantiate(entryPrefab, animalContainer.transform);
+                entry.GetComponent<ShopEntry>().entryData = pair.Value;
+            }
+        }
+    }
+
+    public void StructureTab()
+    {
+        _uiControls.ShowLayout("Shop", "Shop-Structures");
+
+        _shopData.StructureShopEntires = _shopData.StructureShopEntires.OrderBy(pair => pair.Value.cost).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        if (structContainer.transform.childCount == 0)
+        {
+            // Instantiate all the shop entries
+            foreach (KeyValuePair<int, StructureShopEntrySObj> pair in _shopData.StructureShopEntires)
+            {
+                GameObject entry = Instantiate(entryPrefab, structContainer.transform);
+                entry.GetComponent<ShopEntry>().entryData = pair.Value;
+            }
+        }
+    }
+
+    public void MiscTab()
+    {
+        _uiControls.ShowLayout("Shop", "Shop-Misc");
+
+        _shopData.MiscShopEntires = _shopData.MiscShopEntires.OrderBy(pair => pair.Value.cost).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        if(miscContainer.transform.childCount == 0)
+        {
+            // Instantiate all the shop entries
+            foreach (KeyValuePair<int, GenericShopEntrySObj> pair in _shopData.MiscShopEntires)
+            {
+                GameObject entry = Instantiate(entryPrefab, miscContainer.transform);
+                entry.GetComponent<ShopEntry>().entryData = pair.Value;
+            }
+        }
+    }
+
+    public void Purchase(GenericShopEntrySObj shopEntry)
+    {
+        if (_player.zooCoins < shopEntry.cost)
         {
             return;
         }
 
-        _uiControls.ShowLayout("Default");
+        if(shopEntry is StructureShopEntrySObj)
+        {
+            StructureShopEntrySObj structureEntry = (StructureShopEntrySObj)shopEntry;
 
-        // Update PlayerState to Structure
-        _player.SetPlayerState(Player.PlayerState.Structure);
+            _uiControls.ShowLayout("", "Default");
 
-        // Update Player selection brush
-        _player.selectionWidth = structure.width;
-        _player.selectionHeight = structure.height;
+            // Update PlayerState to Structure
+            _player.SetPlayerState(Player.PlayerState.Structure);
 
-        // Spawn the structure
-        SpawnStructure(structure);
+            // Update Player selection brush
+            _player.selectionWidth = structureEntry.width;
+            _player.selectionHeight = structureEntry.height;
+
+            // Spawn the structure
+            SpawnStructure(structureEntry);
+        }
+
+
+        switch(shopEntry.id)
+        {
+            case 13:
+                ZooExpansion(_grid._lockedSectionIndicies.Min());
+                break;
+        }
     }
 
-    public void SpawnStructure(Structure structure, int pos_x = 0, int pos_y = 1, int pos_z = 0)
+    private void ZooExpansion(int section)
+    {
+        Debug.Log($"Bought expansion {section}");
+
+        _grid.UnlockSection(section);
+        _uiControls.ShowLayout("", "Default");
+    }
+
+    public void SpawnStructure(StructureShopEntrySObj structure, int pos_x = 0, int pos_y = 1, int pos_z = 0)
     {
         GameObject GO = Instantiate(structure.container, new Vector3(pos_x, pos_y, pos_z), Quaternion.identity);
         GO.name = structure.container.name;
