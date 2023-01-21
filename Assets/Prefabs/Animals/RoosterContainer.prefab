@@ -227,8 +227,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2498554474187800941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.067536, z: -0.014981}
-  m_LocalScale: {x: 0.94697, y: 0.94697, z: 0.94697}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3081089201549065618}
@@ -256,7 +256,7 @@ MonoBehaviour:
   income_per_tick: 0.28
   income_to_collect: 12500
   max_income_stored: 25000
-  current_income: 0
+  _current_income: 0
   _incomeCanvas: {fileID: 2498554473487974589}
 --- !u!65 &6705203974277893056
 BoxCollider:
@@ -306,8 +306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.33}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 1.3300008}
+  m_SizeDelta: {x: 1.7732, y: 1.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2498554474304855851
 CanvasRenderer:
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: e7eece952dd00c44db23de0ca87ace0a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
