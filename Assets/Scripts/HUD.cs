@@ -16,7 +16,7 @@ public class HUD : MonoBehaviour
 
     public void UpdatePlayerLevel(int level)
     {
-        playerLevelText.text = level.ToString();
+        if(playerLevelText) { playerLevelText.text = level.ToString();}
     }
 
     public void ZooCoinsAnnouncement(float coins, bool isIncrease)

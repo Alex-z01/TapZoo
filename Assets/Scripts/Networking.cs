@@ -84,7 +84,7 @@ public class Networking : MonoBehaviour
                     if (res.code == 0)
                     {
                         _loadHandler.Load(res.msg["playerData"].ToString(), res.msg["zooData"].ToString());
-                        UIControls.ShowLayout("LoggedIn");
+                        UIControls.ShowLayout("", "LoggedIn");
                     }
                     else
                     {

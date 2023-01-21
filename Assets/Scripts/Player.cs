@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     private PlayerState _playerState;
     private SelectionState _selectionState;
 
-    private StructureData _structureData;
+    private ShopData _structureData;
     private PersistantData _persistantData;
     private PlayerData _playerData;
 
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     private void InitializeReferences()
     {
         _persistantData = GameObject.Find("PersistantData").GetComponent<PersistantData>();
-        _structureData = GameObject.Find("System").GetComponent<StructureData>();
+        _structureData = GameObject.Find("System").GetComponent<ShopData>();
         _shop = Manager.Instance.shop;
         _grid = Manager.Instance.grid;
         _hud = Manager.Instance.hud;
@@ -211,6 +211,13 @@ public class Player : MonoBehaviour
             {
                 PrimaryEvents.isPaused = PrimaryEvents.isPaused ? false : true;
                 _uiControls.PauseLayout();
+                return;
+            }
+
+            if(_uiControls.UI_Layouts.Find(layout => layout.lName == _uiControls.currentLayout).hasPrevious)
+            {
+                _uiControls.PreviousLayout();
+                return;
             }
 
             return;
@@ -282,7 +289,7 @@ public class Player : MonoBehaviour
             SetPlayerState(PlayerState.Idle);
 
             // Take player's money
-            zooCoins -= _structureData.allStructures[_activeStructure.structureID].entry.cost;
+            zooCoins -= _structureData.AnimalShopEntries[_activeStructure.structureID].cost;
 
             // Update selected cells' CellState to INVALID
             foreach (Cell cell in _grid.selectedCells)
