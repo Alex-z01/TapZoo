@@ -19,8 +19,9 @@ public class ArrayGrid : MonoBehaviour
     [SerializeField]private ZooData zooData;
     [Space(4)]
 
+
     private PersistantData _persistantData;
-    private StructureData _structureData;
+    private ShopData shopData;
     private Player _player;
 
     public Image cellImage;
@@ -34,14 +35,14 @@ public class ArrayGrid : MonoBehaviour
         public Vector2 bottom_left, top_right;
         public bool locked;
     }
-    [SerializeField] private List<Section> _sections = new List<Section>();
-    [SerializeField] private List<int> _lockedSectionIndicies = new List<int>();
+    private List<Section> _sections = new List<Section>();
+    public List<int> _lockedSectionIndicies = new List<int>();
     #endregion
 
     private void Start()
     {
         _persistantData = GameObject.Find("PersistantData").GetComponent<PersistantData>();
-        _structureData = Manager.Instance.GetComponent<StructureData>();
+        shopData = Manager.Instance.GetComponent<ShopData>();
         _player = Manager.Instance.player;
 
         LoadZoo();
@@ -89,12 +90,12 @@ public class ArrayGrid : MonoBehaviour
 
     private BaseStructure SpawnStructureFromLoad(ZooData.StructureData data)
     {
-        Structure structure = _structureData.allStructures[data.id];
-        GameObject GO = Instantiate(structure.container, new Vector3(data.pos_x, 0, data.pos_z), Quaternion.identity);
-        GO.name = structure.container.name;
-        GO.GetComponent<BaseStructure>().SetStructureID(structure.id);
+        StructureShopEntrySObj structureEntry = shopData.AnimalShopEntries[data.id];
+        GameObject GO = Instantiate(structureEntry.container, new Vector3(data.pos_x, 0, data.pos_z), Quaternion.identity);
+        GO.name = structureEntry.container.name;
+        GO.GetComponent<BaseStructure>().SetStructureID(structureEntry.id);
         GO.GetComponent<BaseStructure>().SetStructureState(BaseStructure.StructureState.Locked);
-        GO.GetComponent<BaseStructure>().UpdateAllPositions(new Vector3(structure.width / 2f, 0, structure.height / 2f));
+        GO.GetComponent<BaseStructure>().UpdateAllPositions(new Vector3(structureEntry.width / 2f, 0, structureEntry.height / 2f));
         if(GO.GetComponent<IncomeStructure>())
         {
             GO.GetComponent<IncomeStructure>().SetCurrentIncome(data.current_income);
@@ -267,8 +268,9 @@ public class ArrayGrid : MonoBehaviour
         }
     }
 
-    private void UnlockSection(int index)
+    public void UnlockSection(int index)
     {
+        UpdateSectionLockState(index, false);
         for (int y = 0; y < _gridL; y++)
         {
             for (int x = 0; x < _gridW; x++)
@@ -279,6 +281,7 @@ public class ArrayGrid : MonoBehaviour
                 }
             }
         }
+        ResetImageGrid();
     }
 
     private void LockSections()
