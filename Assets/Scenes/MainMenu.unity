@@ -560,7 +560,7 @@ RectTransform:
   - {fileID: 824382068}
   - {fileID: 946724575}
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -602,8 +602,8 @@ Camera:
   m_GameObject: {fileID: 341706592}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.9056604, g: 0.6687813, b: 0.36311856, a: 0}
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -682,13 +682,89 @@ RectTransform:
   - {fileID: 1665806281}
   - {fileID: 1183759731}
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &609185429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609185430}
+  - component: {fileID: 609185432}
+  - component: {fileID: 609185431}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &609185430
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609185429}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1793579778}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &609185431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609185429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 77d8ee5c67bcb1d47893cdbda5494afd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &609185432
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609185429}
+  m_CullTransparentMesh: 1
 --- !u!1 &636812186
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,37 +951,43 @@ MonoBehaviour:
   currentLayout: 
   backButton: {fileID: 1837086069}
   UI_Layouts:
-  - lName: Default
+  - FatherLayout: 
+    lName: Default
     layout: {fileID: 2110470519107197283}
     responseObject: {fileID: 0}
     state: 0
     hasPrevious: 0
     canPause: 0
-  - lName: SignUp
+  - FatherLayout: 
+    lName: SignUp
     layout: {fileID: 4557969195969415938}
     responseObject: {fileID: 1993358950}
     state: 0
     hasPrevious: 1
     canPause: 0
-  - lName: Login
+  - FatherLayout: 
+    lName: Login
     layout: {fileID: 462470870368747441}
     responseObject: {fileID: 1633754714}
     state: 0
     hasPrevious: 1
     canPause: 0
-  - lName: Verify
+  - FatherLayout: 
+    lName: Verify
     layout: {fileID: 2589612771261174233}
     responseObject: {fileID: 1664049403}
     state: 0
     hasPrevious: 0
     canPause: 0
-  - lName: LoggedIn
+  - FatherLayout: 
+    lName: LoggedIn
     layout: {fileID: 335856883}
     responseObject: {fileID: 1664049403}
     state: 0
     hasPrevious: 0
     canPause: 0
-  - lName: Leaderboard
+  - FatherLayout: 
+    lName: Leaderboard
     layout: {fileID: 380944228}
     responseObject: {fileID: 1664049403}
     state: 0
@@ -1241,6 +1323,7 @@ GameObject:
   - component: {fileID: 824382071}
   - component: {fileID: 824382070}
   - component: {fileID: 824382069}
+  - component: {fileID: 824382072}
   m_Layer: 5
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -1313,18 +1396,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 657994199}
-        m_TargetAssemblyTypeName: UIControls, Assembly-CSharp
-        m_MethodName: ShowLayout
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Leaderboard
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 657994202}
         m_TargetAssemblyTypeName: LeaderBoard, Assembly-CSharp
         m_MethodName: SpawnLeaderboard
@@ -1375,6 +1446,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824382067}
   m_CullTransparentMesh: 1
+--- !u!114 &824382072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824382067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8264c16b977dd4ba7112ca67a525aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiControls: {fileID: 0}
+  fatherLayout: 
+  goToLayout: Leaderboard
 --- !u!1 &931395691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,6 +2569,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 609185430}
   - {fileID: 8541787354577203}
   - {fileID: 335856884}
   - {fileID: 4557969195969415939}
@@ -2530,7 +2617,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3347,7 +3434,7 @@ MonoBehaviour:
     height: 0
     cells: []
     structures: []
-    lockedQuadrants: 
+    lockedSections: 
 --- !u!4 &2132995101
 Transform:
   m_ObjectHideFlags: 0
@@ -3397,7 +3484,7 @@ RectTransform:
   - {fileID: 9082589969206997841}
   - {fileID: 9082589970002161762}
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4432,7 +4519,7 @@ RectTransform:
   - {fileID: 462470870602877700}
   - {fileID: 462470870362600235}
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5377,7 +5464,7 @@ RectTransform:
   - {fileID: 2589612770837183373}
   - {fileID: 707321264}
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5994,7 +6081,7 @@ RectTransform:
   - {fileID: 4557969196051333561}
   - {fileID: 4557969195375868934}
   m_Father: {fileID: 1793579778}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7451,19 +7538,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9082589969206997847}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 657994199}
-        m_TargetAssemblyTypeName: UIControls, Assembly-CSharp
-        m_MethodName: ShowLayout
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: SignUp
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &9082589969206997841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7497,6 +7572,7 @@ GameObject:
   - component: {fileID: 9082589969206997846}
   - component: {fileID: 9082589969206997847}
   - component: {fileID: 9082589969206997840}
+  - component: {fileID: 9082589969206997848}
   m_Layer: 5
   m_Name: SignUp
   m_TagString: Untagged
@@ -7542,6 +7618,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9082589969206997848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082589969206997842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8264c16b977dd4ba7112ca67a525aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiControls: {fileID: 0}
+  fatherLayout: 
+  goToLayout: SignUp
 --- !u!222 &9082589969535659162
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7885,19 +7976,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9082589970002161760}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 657994199}
-        m_TargetAssemblyTypeName: UIControls, Assembly-CSharp
-        m_MethodName: ShowLayout
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Login
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &9082589970002161762
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7931,6 +8010,7 @@ GameObject:
   - component: {fileID: 9082589970002161767}
   - component: {fileID: 9082589970002161760}
   - component: {fileID: 9082589970002161761}
+  - component: {fileID: 9082589970002161768}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -7946,3 +8026,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9082589970002161763}
   m_CullTransparentMesh: 1
+--- !u!114 &9082589970002161768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082589970002161763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8264c16b977dd4ba7112ca67a525aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiControls: {fileID: 0}
+  fatherLayout: 
+  goToLayout: Login
