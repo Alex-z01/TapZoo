@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e301cf090f1144e9d61b12b0083d0c, type: 3}
+  m_Name: RoosterEntry
+  m_EditorClassIdentifier: 
+  id: 10
+  entryName: Rooster
+  cost: 17800
+  container: {fileID: 2498554474187800941, guid: 60162d7703e6fba4d9f72719a1e49da6, type: 3}
+  height: 2
+  width: 2
