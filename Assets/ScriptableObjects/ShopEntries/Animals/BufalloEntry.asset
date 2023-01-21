@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e301cf090f1144e9d61b12b0083d0c, type: 3}
+  m_Name: BufalloEntry
+  m_EditorClassIdentifier: 
+  id: 0
+  entryName: Bufallo
+  cost: 12500
+  container: {fileID: 5575094117936346231, guid: 65209cb1a9d1dc84c92b8583ac79878f, type: 3}
+  height: 3
+  width: 3
